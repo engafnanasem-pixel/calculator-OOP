@@ -57,7 +57,11 @@ class calc:
       print (f"The CALCUlater :{self.name}")
       print(f"No.OPERATIONS:{self.count}")
       
-      
+   def save_to_file (self, filename="history.txt"):
+      with open(filename, "a") as f:
+         for item in self.history: 
+            f.write(item +"\n")
+      print(f"SAVED in History🎉️  {filename}")
       
       
       
@@ -91,6 +95,7 @@ def main():
       print("6. status")
       print("7. clear history")
       print("8. Exit")
+      print("9. Save to file")
       choice = input ("Your Choice:")
       if choice == "8":
          clos = input ("Are you sure ? y or n")
@@ -98,7 +103,8 @@ def main():
             print ("BYE BYE")
             break
          
-         
+      elif choice == "9":
+         cal.save_to_file()  
          
       elif choice in ["1","2","3","4"]:
          a= float (input ("THe 1st number :"))
