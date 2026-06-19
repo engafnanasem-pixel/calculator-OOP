@@ -1,3 +1,4 @@
+import json
 class calc:
    def __init__(self , name="my calc"):
       self.name =name
@@ -64,7 +65,17 @@ class calc:
       print(f"SAVED in History🎉️  {filename}")
       
       
-      
+   def save_to_json(self,filename="calc_history.json"):
+      data=[]
+      for item in self.history:
+         parts = item.split(" = ")
+         operation = parts[0]
+         result = parts[1]
+         data.append({"operation":operation, "result":result})
+      with open(filename,"w") as f:
+         json.dump(data, f ,indent=2)
+      print(f"History is saved in {filename}💯️") 
+  
       
 calculater = calc ("Fonna")
 print(calculater.add(10,5))
@@ -104,7 +115,7 @@ def main():
             break
          
       elif choice == "9":
-         cal.save_to_file()  
+         cal.save_to_json()  
          
       elif choice in ["1","2","3","4"]:
          a= float (input ("THe 1st number :"))
